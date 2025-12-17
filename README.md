@@ -1,6 +1,6 @@
 # Real-estate-price-prediction-analysis
 
-```markdown
+
 # 🏠 Przewidywanie cen nieruchomości: Regresja Liniowa vs XGBoost
 
 Projekt analityczny porównujący skuteczność klasycznych metod statystycznych oraz nowoczesnych algorytmów uczenia maszynowego w zadaniu wyceny nieruchomości (zbiór danych Boston Housing).
