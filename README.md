@@ -76,6 +76,6 @@ W ramach projektu przetestowano dwa algorytmy na danych surowych oraz po transfo
 3. Uruchom notatnik Jupyter/Colab:
    `Analiza_Boston_Housing.ipynb`
 
----
+```
 *Autor: Oliwier Stecyk*
 ```
