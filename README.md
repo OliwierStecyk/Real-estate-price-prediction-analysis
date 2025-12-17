@@ -45,14 +45,23 @@ Dla modelu XGBoost przeprowadzono strojenie hiperparametrów przy użyciu przesz
 *   `colsample_bytree`
 
 ## 📊 Wyniki
-Porównanie skuteczności modeli na zbiorze testowym:
+W ramach projektu przetestowano dwa algorytmy na danych surowych oraz po transformacji logarytmicznej zmiennej docelowej (ceny). Pozwoliło to sprawdzić, jak rozkład danych wpływa na różne rodziny modeli.
 
-| Metryka | Regresja Liniowa (Baseline) | XGBoost (Po tuningu) |
-| :--- | :---: | :---: |
-| **R2 Score** | [WPISZ WYNIK, np. 0.71] | **[WPISZ WYNIK, np. 0.89]** |
-| **MSE** (Błąd średniokwadratowy) | [WPISZ WYNIK] | **[WPISZ WYNIK]** |
+| Model | Wariant Danych | MSE (Mniej = Lepiej) | RMSE | R2 Score (Więcej = Lepiej) |
+| :--- | :--- | :---: | :---: | :---: |
+| **XGBoost** | **Dane Oryginalne** | **9.50** | **3.08** | **0.8705** 🏆 |
+| Regresja Liniowa | Transformacja Log | 19.46 | 4.41 | 0.7346 |
+| XGBoost | Transformacja Log | 24.99 | 5.00 | 0.6592 |
+| Regresja Liniowa | Dane Oryginalne | 26.47 | 5.14 | 0.6390 |
 
-> **Wniosek:** Model XGBoost osiągnął znacząco lepsze wyniki, redukując błąd predykcji i lepiej odwzorowując nieliniowe zależności w danych.
+### 📝 Analiza i Wnioski
+
+1.  **Dominacja XGBoost:** Najlepszy uzyskany wynik to **R2 = 0.87** dla modelu XGBoost na danych oryginalnych. Błąd średni (RMSE) wynosił tylko ok. **3.08 tys. $**, co jest znaczącą poprawą względem modelu bazowego (5.14 tys. $).
+2.  **Wpływ transformacji danych:**
+    *   **Dla Regresji Liniowej:** Zastosowanie transformacji logarytmicznej znacznie poprawiło wynik (wzrost R2 z 0.64 na 0.73). Potwierdza to teorię, że modele liniowe działają lepiej, gdy zmienna celowa ma rozkład zbliżony do normalnego (ceny nieruchomości są naturalnie prawoskośne).
+    *   **Dla XGBoost:** Transformacja nie przyniosła korzyści, a wręcz pogorszyła wynik. Wynika to z natury drzew decyzyjnych, które opierają się na progowaniu (split points) i są inwariantne na monotoniczne przekształcenia zmiennych. Najlepsze podziały zostały znalezione na danych surowych.
+
+**Ostateczna decyzja:** Do wdrożenia rekomendowany jest model **XGBoost trenowany na danych oryginalnych**, ze względu na najwyższą predykcję i najmniejszy błąd średniokwadratowy.
 
 ## 🚀 Jak uruchomić projekt?
 
@@ -68,5 +77,5 @@ Porównanie skuteczności modeli na zbiorze testowym:
    `Analiza_Boston_Housing.ipynb`
 
 ---
-*Autor: [Twoje Imię i Nazwisko]*
+*Autor: Oliwier Stecyk*
 ```
